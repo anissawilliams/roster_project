@@ -1,0 +1,11 @@
+name,position,direction,from_school,to_school,transfer_date,status,nil_value_at_transfer
+DJ Uiagalelei,QB,Incoming,Oregon State,Florida State,2024-12-18,Enrolled,220000
+Hykeem Williams,WR,Incoming,Florida State,USC,2025-01-08,Enrolled,145000
+Ja'Khi Douglas,S,Incoming,Louisville,Florida State,2024-12-22,Enrolled,52000
+Darion Williamson,WR,Incoming,Alabama,Florida State,2025-01-14,Enrolled,52000
+Braden Fiske,DT,Outgoing,Florida State,NFL Draft,2024-01-15,Departed,0
+Jared Verse,DE,Outgoing,Florida State,NFL Draft,2024-01-15,Departed,0
+Trey Benson,RB,Outgoing,Florida State,NFL Draft,2024-01-15,Departed,0
+Kentron Poitier,WR,Incoming,Miami,Florida State,2024-12-30,Enrolled,88000
+Omar Graham Jr,LB,Incoming,Georgia,Florida State,2025-01-10,Enrolled,39000
+Mycah Pittman,WR,Outgoing,Florida State,Oregon,2025-01-20,Departed,0
