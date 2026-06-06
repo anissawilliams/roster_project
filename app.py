@@ -97,7 +97,7 @@ with tab1:
 # ═══════════════════════════════════════════════════════════════════════════════
 with tab2:
     st.subheader("NIL Valuations")
-    st.caption("Estimated market valuations — illustrative data for prototype purposes")
+    st.caption("Estimated market valuations: illustrative data for prototype purposes")
 
     nil_sorted = nil.sort_values("nil_value", ascending=False).reset_index(drop=True)
 
@@ -173,8 +173,9 @@ with tab3:
     ax4.bar(out_pos.index, out_pos.values, color=GARNET)
     ax4.set_ylabel("Players")
     ax4.set_title("Outgoing Transfer Losses by Position")
-    plt.tight_layout()
     st.pyplot(fig4)
 
+    # TODO: outgoing transfer losses by rating...
+
+
 st.divider()
-st.caption("RosterEdge Prototype v0.1 · Roster & transfer data via CFBD API · NIL valuations illustrative")
