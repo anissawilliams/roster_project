@@ -1,0 +1,12 @@
+id,firstName,lastName,team,weight,height,jersey,year,position,homeCity,homeState,homeCountry,homeLatitude,homeLongitude,homeCountyFIPS,recruitIds,Full_Name,stars,rating,Is_Transfer,name,nil_value,social_followers
+4430894,Caziah,Holmes,Florida State,219,71,26,4,RB,Titusville,FL,USA,28.6122187,-80.8075538,12009.0,['118599'],Caziah Holmes,3.0,0.85,0.0,Caziah Holmes,95000,14000
+4431319,Luke,Petitbon,Florida State,303,74,51,4,OL,Annapolis,MD,USA,38.9786401,-76.492786,24003.0,[],Luke Petitbon,4.0,0.92,1.0,Luke Petitbon,289000,18000
+4432664,Gavin,Blackwell,Florida State,185,71,6,4,WR,Indian Trail,NC,USA,35.0768141,-80.6692352,37179.0,['115951'],Gavin Blackwell,3.0,0.85,1.0,Gavin Blackwell,65000,13000
+4685447,Daniel,Lyons,Florida State,292,76,5,3,DL,Miami,FL,USA,25.7742658,-80.1936589,12086.0,['114010'],Daniel Lyons,3.0,0.85,0.0,Daniel Lyons,335000,27000
+4685545,Gavin,Sawchuk,Florida State,202,71,27,3,RB,Littleton,CO,USA,39.613321,-105.0166498,8005.0,['113641'],Gavin Sawchuk,3.0,0.87,1.0,Gavin Sawchuk,88000,22000
+4689191,Gunnar,Hansen,Florida State,330,77,55,4,OL,Boca Raton,FL,USA,26.3586885,-80.0830984,12099.0,['117198'],Gunnar Hansen,3.0,0.86,1.0,Gunnar Hansen,366000,31000
+4808743,Omar,Graham Jr.,Florida State,235,73,9,3,LB,Fort Lauderdale,FL,USA,26.1223084,-80.1433786,12011.0,['114168'],Omar Graham Jr.,3.0,0.85,1.0,Omar Graham Jr.,35000,6500
+4870922,Duce,Robinson,Florida State,222,78,0,3,WR,Phoenix,AZ,USA,33.4484367,-112.0741417,4013.0,['111261'],Duce Robinson,4.0,0.95,1.0,Duce Robinson,1200000,95000
+5083703,Jarvis,Boatwright Jr.,Florida State,198,73,30,1,DB,Clearwater,FL,USA,27.9658533,-82.8001026,12103.0,['109228'],Jarvis Boatwright Jr.,3.0,0.85,1.0,Jarvis Boatwright Jr.,72000,11000
+5088153,Micahi,Danzy,Florida State,189,73,19,1,WR,Tallahassee,FL,USA,30.4380832,-84.2809332,12073.0,['108936'],Micahi Danzy,3.0,0.85,0.0,Micahi Danzy,386000,28000
+5167703,Mandrell,Desir,Florida State,265,76,93,1,DL,Miami,FL,USA,25.7742658,-80.1936589,12086.0,[],Mandrell Desir,3.0,0.85,0.0,Mandrell Desir,810000,42000

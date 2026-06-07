@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
+import sqlite3
 
 st.set_page_config(page_title="RosterEdge – FSU", page_icon="🏈", layout="wide")
 
@@ -19,21 +20,26 @@ def inches_to_feet(n):
 
 @st.cache_data
 def load_data():
-    data_dir = "data/"
+    conn = sqlite3.connect("rosterEdge.db")
 
+    roster = pd.read_sql("SELECT * FROM roster", conn)
+    roster["name"]           = roster["firstName"] + " " + roster["lastName"]
+    roster["class"]          = roster["year"].map(YEAR_MAP).fillna("Other")
+    roster["height_display"] = roster["height"].apply(inches_to_feet)
+    roster["hometown"]       = roster["homeCity"] + ", " + roster["homeState"]
 
-    roster = pd.read_csv(data_dir+"fsu_roster_2025.csv")
-    roster["name"]            = roster["firstName"] + " " + roster["lastName"]
-    roster["class"]           = roster["year"].map(YEAR_MAP).fillna("Other")
-    roster["height_display"]  = roster["height"].apply(inches_to_feet)
-    roster["hometown"]        = roster["homeCity"] + ", " + roster["homeState"]
+    # alias columns to match what the rest of the app expects
+    nil = pd.read_sql("""
+        SELECT Full_Name as name, position, predicted_nil as nil_value,
+               confidence as nil_source, social_followers
+        FROM nil_valuations
+    """, conn)
 
-    nil = pd.read_csv(data_dir+"fsu_nil_valuations.csv")
-
-    transfers = pd.read_csv(data_dir+"fsu_transfers_2025.csv")
+    transfers = pd.read_sql("SELECT * FROM transfers", conn)
     transfers["name"] = transfers["firstName"] + " " + transfers["lastName"]
     transfers["transferDate"] = pd.to_datetime(transfers["transferDate"]).dt.strftime("%Y-%m-%d")
 
+    conn.close()
     return roster, nil, transfers
 
 roster, nil, transfers = load_data()
@@ -48,9 +54,7 @@ st.divider()
 
 tab1, tab2, tab3 = st.tabs(["📋 Roster", "💰 NIL Valuations", "🔄 Transfer Portal"])
 
-# ═══════════════════════════════════════════════════════════════════════════════
-# TAB 1 — ROSTER
-# ═══════════════════════════════════════════════════════════════════════════════
+##### ROSTER TAB #####
 with tab1:
     st.subheader(f"2025 FSU Roster  ({len(roster)} players)")
 
@@ -92,12 +96,10 @@ with tab1:
         plt.tight_layout()
         st.pyplot(fig)
 
-# ═══════════════════════════════════════════════════════════════════════════════
-# TAB 2 — NIL VALUATIONS
-# ═══════════════════════════════════════════════════════════════════════════════
+#### NIL VALUATIONS TAB ####
 with tab2:
     st.subheader("NIL Valuations")
-    st.caption("Estimated market valuations: illustrative data for prototype purposes")
+    st.caption("Model-predicted NIL valuations based on position, social following, and roster role")
 
     nil_sorted = nil.sort_values("nil_value", ascending=False).reset_index(drop=True)
 
@@ -137,9 +139,7 @@ with tab2:
         use_container_width=True, hide_index=True, height=500,
     )
 
-# ═══════════════════════════════════════════════════════════════════════════════
-# TAB 3 — TRANSFER PORTAL
-# ═══════════════════════════════════════════════════════════════════════════════
+#### TRANSFER PORTAL TAB ###
 with tab3:
     st.subheader("2025 Transfer Portal Activity")
 
@@ -166,7 +166,6 @@ with tab3:
         use_container_width=True, hide_index=True, height=600,
     )
 
-    # position breakdown of outgoing — shows where the roster gaps are
     st.markdown("#### Outgoing by Position")
     out_pos = outgoing["position"].value_counts()
     fig4, ax4 = plt.subplots(figsize=(8, 3))
@@ -176,6 +175,14 @@ with tab3:
     st.pyplot(fig4)
 
     # TODO: outgoing transfer losses by rating...
+    st.markdown("#### Outgoing by Rating")
+    out_pos = outgoing["stars"].value_counts()
+    fig4, ax4 = plt.subplots(figsize=(8, 3))
+    ax4.bar(out_pos.index, out_pos.values, color=GOLD)
+    ax4.set_ylabel("Players")
+    ax4.set_title("Outgoing Transfer Losses by Stars")
+    st.pyplot(fig4)
+
 
 
 st.divider()
